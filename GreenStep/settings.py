@@ -34,6 +34,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 INSTALLED_APPS = [
     'GreenStepApp',
+    'login',
     'crispy_forms',
     'crispy_bootstrap5',
     'django.contrib.admin',

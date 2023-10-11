@@ -1,3 +1,4 @@
+<!--Pagina base donde hay que poner el estilo para el resto de pagina y asi mantener la estetica-->
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -11,30 +12,33 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
-                  <a class="navbar-brand" href="{% url 'home' %}">GreenStep</a>
+                  <a class="navbar-brand" href="{% url 'home' %}" style="color: darkgreen;">GreenStep</a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <!--Boton para ir al perfil-->
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'profile' %}">Perfil</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'profile' %}" style="color: darkgreen;">Perfil</a>
                       </li>
+                      <!--Boton de quienes somos(si se les ocurre alguna mejor idea que colocar aqui lo cambian nomas)-->
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Quienes somos</a>
+                        <a class="nav-link" href="{% url 'whois' %}" style="color: darkgreen;">Quienes somos</a>
                       </li>
+                      <!--Botones de login/register/logout-->
                       <li class="nav-item">
                         {% if user.is_authenticated %}
-                            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
+                            <a class="nav-link" href="{% url 'logout' %}" style="color: darkgreen;">Cerrar sesión</a>
                         {% else %}
-                            <a class="nav-link" href="{% url 'login_url' %}">Iniciar sesión</a>
+                            <a class="nav-link" href="{% url 'login_url' %}" style="color: darkgreen;">Iniciar sesión</a>
                         {% endif %}
                       </li>
                       <li class="nav-item">
                         {% if user.is_authenticated %}
                             <a class="nav-link" href="#"></a>
                         {% else %}
-                            <a class="nav-link" href="{% url 'register_url' %}">Registrate</a>
+                            <a class="nav-link" href="{% url 'register_url' %}" style="color: darkgreen;">Registrate</a>
                         {% endif %}
                       </li>
                   </div>
