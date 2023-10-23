@@ -1,15 +1,27 @@
-{% extends 'base.html' %}
-
 {% block content %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenStep</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home_styles.css' %}">
+  <title>GreenStep</title>
 </head>
+
 <body>
-    <h1>Home</h1>
+  <h1>Bienvenidx a GreenStep, {{ user.username }}</h1>
+  <h3 class="hola">¿Que es GreenStep?</h3>
+  <p>GreenStep es un sitio web que busca concientizar a la gente sobre la huella de carbono que cada persona genera</p>
+  <p>Para lograr nuestro objetivo usamos una API que nos permite mostrar cuanto carbono generan nuestras acciones cotidianas y cual podria ser la mejor opcion en cada caso</p>
+  <a href="{% url 'calculadora' %}">Conoce tu huella de carbono aqui</a>
+  <a href="{% url 'logout' %}">Cerrar sesión</a>
 </body>
 </html>
 
