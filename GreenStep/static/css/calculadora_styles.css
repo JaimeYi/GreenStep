@@ -10,7 +10,10 @@ body {
     background: rgb(221, 228, 221);
     }
 
-.container-flex {
+.container-flex2 {
     width: 20%;
     height: 20%;
+    position: absolute;
+    left: 5%;
+    top: 15%;
     }
