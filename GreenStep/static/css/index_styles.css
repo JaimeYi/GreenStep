@@ -1,3 +1,9 @@
 .navbar {
     background: rgb(122, 218, 122);
 }
+
+img {
+    position: absolute;
+    left: 45%;
+    top: 0%;
+}
