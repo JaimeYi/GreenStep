@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<section class="home">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Vehiculo</th>
+            <th scope="col">Combustible</th>
+            <th scope="col">Contaminación</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for vehiculo in vehiculos %}
+            <tr>
+                <th scope="row">{{ vehiculo.id }}</th>
+                <td>{{ vehiculo.tipo_de_vehiculo }}</td>
+                <td>{{ vehiculo.tipo_de_combustible }}</td>
+                <td>{{ vehiculo.carbono_por_litro }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+{% endblock %}

@@ -6,6 +6,7 @@ from django.http.response import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 import json
+import requests
 
 
 # Create your views here.

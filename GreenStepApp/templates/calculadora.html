@@ -1,28 +1,24 @@
 {% extends 'index.html' %}
 
-{% block content %}
-
 {% load static %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/calculadora_styles.css' %}">
     <title>GreenStep</title>
 </head>
 <body>
-    <div class="container-flex2">
-        <div class="card rounded-4 shadow">
-            <div class="card-body">
-                <select class="form-control">
-                    <option>Large</option>
-                </select>
-            </div>
-        </div>
-    </div>
+    <section class="home">
+        <label for="tipo_de_vehiculo">¿Que vehiculo utiliza?</label>
+        <select name="tipo_de_vehiculo" id="tipo_de_vehiculo">
+            {% for vehiculo in vehiculos %}
+                <option value="opcion">{{ vehiculo.tipo_de_vehiculo }}</option>
+            {% endfor %}
+        </select>
+    </section>
 </body>
 </html>
-
 {% endblock %}
