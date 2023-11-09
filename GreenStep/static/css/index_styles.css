@@ -155,24 +155,6 @@ body.dark .sidebar header .toggle {
     margin-top: 35px;
 }
 
-.sidebar .search-box {
-    background: var(--primary-color-light);
-    border-radius: 6px;
-    transition: var(--tran-05);
-}
-
-.search-box input {
-    height: 100%;
-    width: 100%;
-    outline: none;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 500;
-    background: var(--primary-color-light);
-    transition: var(--tran-05);
-}
-
 .sidebar li a{
     height: 100%;
     width: 100%;
@@ -245,7 +227,7 @@ body.dark .menu-bar .mode i.moon {
     cursor: pointer;
     border-radius: 6px;
     background: var(--primary-color-light);
-    transition: var(--tran-05);
+    transition: var(--tran-01);
 }
 
 .toggle-switch .switch {
@@ -254,7 +236,7 @@ body.dark .menu-bar .mode i.moon {
     width: 44px;
     border-radius: 25px;
     background: var(--toogle-color);
-    transition: var(--tran-05);
+    transition: var(--tran-01);
 }
 
 .switch::before {
