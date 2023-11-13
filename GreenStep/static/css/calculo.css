@@ -1,0 +1,45 @@
+.opciones {
+    font-size: 15px;
+    width: auto;
+    position: relative;
+}
+
+.card {
+    width: 600px;
+    height: 125px;
+    background-color: var(--sidebar-color);
+}
+
+.col1 {
+    position: absolute;
+    width: 150px;
+    text-align: start;
+    left: 5px;
+    color: var(--text-body-color)
+}
+
+.col2 {
+    position: absolute;
+    width: 150px;
+    text-align: center;
+    left: 205px;
+    top: 0;
+    color: var(--text-body-color)
+}
+
+.col3 {
+    position: absolute;
+    width: 150px;
+    text-align: end;
+    right: 5px;
+    color: var(--text-body-color);
+}
+
+.form-label {
+    color: var(--text-body-color);
+}
+
+.tip {
+    text-decoration: none;
+    color: var(--text-body-color);
+}

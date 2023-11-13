@@ -3,15 +3,11 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'calculadora_styles' %}">
 
 <body>
     <section class="home">
-        <label for="tipo_de_vehiculo">¿Que vehiculo utiliza?</label>
-        <select name="tipo_de_vehiculo" id="tipo_de_vehiculo">
-            {% for vehiculo in vehiculos %}
-                <option value="opcion">{{ vehiculo.tipo_de_vehiculo }}</option>
-            {% endfor %}
-        </select>
+        <a href="{% url 'calculo' %}" class="btn btn-success">Calculo</a>
     </section>
 </body>
 

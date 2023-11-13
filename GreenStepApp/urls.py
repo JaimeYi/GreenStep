@@ -8,4 +8,6 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('tu_mundo/', views.mundo, name='mundo'),
     path('nosotros/', views.nosotros, name='nosotros'),
+    path('calculo/', views.calculo, name="calculo"),
+    path('calcularhuella/', views.calcularhuella, name='calcularhuella'),
     ]

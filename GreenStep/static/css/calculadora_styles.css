@@ -8,8 +8,7 @@
     }
 body {
     background: rgb(221, 228, 221);
-    }
-
-.container {
-    background: red;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

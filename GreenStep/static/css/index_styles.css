@@ -15,6 +15,7 @@
     --primary-color-light: rgb(227, 252, 234);
     --toogle-color: #ddd;
     --text-color: #707070;
+    --text-body-color: rgb(17, 17, 17);
 
     /* ====== transiciones ======*/
     --tran-02: all 0.2s ease;
@@ -24,9 +25,9 @@
 }
 
 body {
-    height: 100vh;
     background: var(--body-color);
     transition: var(--tran-05);
+    height: 100%;
 }
 
 body.dark {
@@ -36,6 +37,7 @@ body.dark {
     --primary-color-light: #3a3b3c;
     --toogle-color: #fff;
     --text-color: #ccc;
+    --text-body-color: #ccc;
 }
 
 /* ====== Sidebar ====== */
