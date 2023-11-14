@@ -38,7 +38,7 @@
 .btn-login {
     text-align: center;
     background-color: var(--primary-color);
-    width: 200px;
+    width: 100px;
     height: 40px;
     border-radius: 20px;
     padding: 7.5px;
@@ -52,14 +52,14 @@
 .btn-general {
     position: absolute;
     right: 25px;
-    width: 500px;
+    width: 300px;
     height: 40px;
 }
 
 .btn-register {
     text-align: center;
     background-color: var(--primary-color);
-    width: 200px;
+    width: 100px;
     height: 40px;
     border-radius: 20px;
     padding: 7.5px;

@@ -1,0 +1,158 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/calculo.css' %}">
+
+<body>
+    <section class="home">                                 
+        <h1 class="text">Encuesta</h1>
+            <form action="\calcularhuella\" method="get" name="encuesta">
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <label for="kms_conducidos" class="form-label">¿Cuántos kilómetros conduces por semana?</label>
+                        <input type="range" class="form-range" min="0" max="2" name="kms_conducidos">
+                        <div class="container-flex opciones">
+                            <div class="col1">
+                                <span class="op1">Menos de 50km</span>
+                            </div>
+                            <div class="col2">
+                                <span class="op2">Entre 50 y 150 km</span>
+                            </div>
+                            <div class="col3">
+                                <span class="op3">Más de 150 km</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <label for="promedio_electricidad" class="form-label">¿Cuál es tu consumo promedio de electricidad en casa?</label>
+                        <input type="range" class="form-range" min="0" max="2" name="promedio_electricidad">
+                        <div class="container-flex opciones">
+                            <div class="col1">
+                                <span class="tip"><i class='bx bx-info-circle' data-bs-toggle="tooltip" title="Menos de 100 kWh por mes"></i> Bajo</span>
+                            </div>
+                            <div class="col2">
+                                <span class="tip"><i class='bx bx-info-circle' data-bs-toggle="tooltip" title="Entre 100 kWh y 300 kWh por mes"></i> Moderado</span>
+                            </div>
+                            <div class="col3">
+                                <span class="tip"><i class='bx bx-info-circle' data-bs-toggle="tooltip" title="Más de 300 kWh por mes"></i> Alto</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <label for="vuelos" class="form-label">¿Cuántos vuelos de larga distancia realizas por año?</label>
+                        <input type="range" class="form-range" min="0" max="2" name="vuelos">
+                        <div class="container-flex opciones">
+                            <div class="col1">
+                                <span class="op1">Ninguno</span>
+                            </div>
+                            <div class="col2">
+                                <span class="op2">1-2 vuelos</span>
+                            </div>
+                            <div class="col3">
+                                <span class="op3">Más de 2 vuelos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <label for="carnes_rojas" class="form-label">¿Con qué frecuencia comes carne roja?</label>
+                        <input type="range" class="form-range" min="0" max="2" name="carnes_rojas">
+                        <div class="container-flex opciones">
+                            <div class="col1">
+                                <span class="tip"><i class='bx bx-info-circle' data-bs-toggle="tooltip" title="Una vez al mes o menos"></i> Rara vez</span>
+                            </div>
+                            <div class="col2">
+                                <span class="tip"><i class='bx bx-info-circle' data-bs-toggle="tooltip" title="Una vez a la semana"></i> Moderadamente</span>
+                            </div>
+                            <div class="col3">
+                                <span class="tip"><i class='bx bx-info-circle' data-bs-toggle="tooltip" title="Más de una vez a la semana"></i> Frecuentemente</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <label for="reciclaje" class="form-label">¿Reciclas regularmente?</label>
+                        <input type="range" class="form-range" min="0" max="2" name="reciclaje">
+                        <div class="container-flex opciones">
+                            <div class="col1">
+                                <span class="op1">Si, siempre reciclo</span>
+                            </div>
+                            <div class="col2">
+                                <span class="op2">A veces reciclo</span>
+                            </div>
+                            <div class="col3">
+                                <span class="op3">No reciclo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <label for="transporte" class="form-label">¿Usas transporte público o compartido regularmente?</label>
+                        <input type="range" class="form-range" min="0" max="2" name="transporte">
+                        <div class="container-flex opciones">
+                            <div class="col1">
+                                <span class="op1">Sí, siempre uso transporte público o compartido</span>
+                            </div>
+                            <div class="col2">
+                                <span class="op2">A veces uso transporte público o compartido</span>
+                            </div>
+                            <div class="col3">
+                                <span class="op3">No uso transporte público o compartido</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <label for="jardin" class="form-label">¿Tienes un jardín o espacio verde en casa?</label>
+                        <input type="range" class="form-range" min="0" max="2" name="jardin">
+                        <div class="container-flex opciones">
+                            <div class="col1">
+                                <span class="op1">Sí, tengo un jardín grande</span>
+                            </div>
+                            <div class="col2">
+                                <span class="op2">Sí, tengo un pequeño jardín</span>
+                            </div>
+                            <div class="col3">
+                                <span class="op3">No tengo jardín</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <label for="agua_promedio" class="form-label">¿Cuál es tu consumo de agua promedio?</label>
+                        <input type="range" class="form-range" min="0" max="2" name="agua_promedio">
+                        <div class="container-flex opciones">
+                            <div class="col1">
+                                <span class="tip"><i class='bx bx-info-circle' data-bs-toggle="tooltip" title="Menos de 100 litros por día"></i> Bajo</span>
+                            </div>
+                            <div class="col2">
+                                <span class="tip"><i class='bx bx-info-circle' data-bs-toggle="tooltip" title="Entre 100 y 200 litros por día"></i> Moderado</span>
+                            </div>
+                            <div class="col3">
+                                <span class="tip"><i class='bx bx-info-circle' data-bs-toggle="tooltip" title="Más de 200 litros por día"></i> Alto</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-success" type="submit">Calcula tu huella</button>
+            </form>
+            <h1>{{ mensaje }}</h1>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="{% static 'js/footprint.js' %}"></script>
+</body>
+
+{% endblock %}
