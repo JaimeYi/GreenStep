@@ -13,4 +13,7 @@
     left: 67.5%;
     transform: translate(-50%, -50%);
     }
-    
+
+.body-text {
+    color: var(--text-body-color);
+}

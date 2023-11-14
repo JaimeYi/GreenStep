@@ -1,14 +1,18 @@
 {% extends 'index.html' %}
 
+{% load static %}
+
 {% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile_styles.css' %}">
 
 <body>
     <section class="home">
       <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}"  width="100" height="100" >
+        <img class="rounded-circle account-img" src="{% static 'img/default.jpg' %}"  width="100" height="100" >
         <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
+          <h2 class="account-heading body-text">{{ user.username }}</h2>
+          <p class="text-secondary body-text">{{ user.email }}</p>
         </div>
       </div>
     </div>
