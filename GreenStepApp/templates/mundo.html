@@ -1,10 +1,32 @@
 {% extends 'index.html' %}
 
+{% load static %}
+
 {% block content %}
+
+<style>
+    .container-flex {
+        width: 950px;
+    }
+    
+    .tips{
+        border: 5px solid var(--container-color); 
+        padding: 15px; 
+        margin: 20px 0;
+        border-radius: 8px;
+        font-family: Times New Roman, serif; 
+        font-size: 103%;
+        color: var(--text-body-color); 
+    }
+</style>
 
 <body>
     <section class="home">
-        <h1 class="text">Tu mundo</h1>
+        <h1 class="text">Tu Mundo</h1>
+        <div class="container-flex mx-auto tips">
+            <p>Reducir la huella de carbono es esencial para mitigar el impacto ambiental y contribuir a la sostenibilidad del planeta. Al adoptar hábitos conscientes, podemos marcar la diferencia. <br><br><br>1.Recicla conscientemente: <br><br>Separa tus residuos en categorías como papel, cartón, plástico, vidrio y metal para facilitar el proceso de reciclaje. <br><br><br>2.Reduce, reutiliza, recicla: <br><br>Prioriza la reducción del consumo, reutiliza productos siempre que sea posible y recicla de manera responsable para minimizar la generación de residuos. <br><br><br>3.Ahorro de energía en casa: <br><br>Apaga luces y dispositivos electrónicos cuando no los estés utilizando. Utiliza bombillas de bajo consumo energético y considera la instalación de paneles solares. <br><br><br>4.Transporte sostenible: <br><br>Opta por medios de transporte más ecológicos, como caminar, andar en bicicleta o utilizar el transporte público. Si es posible, considera vehículos eléctricos. <br><br><br>5.Compra responsable: <br><br>Elige productos con etiquetas ecológicas, preferiblemente fabricados con materiales reciclables y procesos sostenibles. <br><br><br>6.Cuida el agua: <br><br>Reduce el consumo de agua en casa cerrando los grifos correctamente y arreglando cualquier fuga. Considera la instalación de dispositivos de ahorro de agua. <br><br><br>7.Dieta más sostenible: <br><br>Reduce el consumo de alimentos de origen animal y opta por una dieta más basada en plantas para disminuir la huella de carbono asociada a la producción de carne. <br><br><br>8.Plantación de árboles: <br><br>Participa en actividades de reforestación o contribuye a programas de plantación de árboles para contrarrestar las emisiones de carbono. <br><br><br>9.Composta de residuos orgánicos: <br><br>Composta los residuos orgánicos en lugar de desecharlos, lo que no solo reduce la cantidad de desechos sino que también enriquece el suelo. <br><br><br>10.Educación y concientización: <br><br>Informa a amigos y familiares sobre la importancia de reducir la huella de carbono y el reciclaje para fomentar prácticas sostenibles en la comunidad. <br><br><br>Al adoptar estos hábitos en la vida diaria, contribuimos significativamente a la preservación del medio ambiente y a la construcción de un futuro más sostenible.</p>
+
+        </div>
     </section>
 </body>
 

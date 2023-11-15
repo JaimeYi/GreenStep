@@ -12,10 +12,39 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
         body {
-            background-color: #e4e9f7;
+            background-color: #d1f6e0;
+        }
+
+        .description{
+            font-family: Times New Roman, serif; /* Cambia 'Arial' por la fuente que desees, y 'sans-serif' será la fuente de respaldo */
+            font-size: 103%;
+        }
+
+        .bordered-container {
+            border: 5px solid #28a745; /* Color del borde (puedes cambiarlo) */
+            padding: 15px; /* Espaciado interno del contenedor */
+            margin: 20px 0; /* Margen exterior del contenedor */
+            border-radius: 8px; /* Bordes redondeados (opcional) */
+        }
+
+        .display5 {
+            position: absolute;
+            top: 58%;
+            left: 50%;
+            font-family: 'Consolas', Monospace; /* Cambia 'Arial' por la fuente que desees, y 'sans-serif' será la fuente de respaldo */
+            font-size: 350%; /* Ajusta el tamaño según tus preferencias */
+            font-weight: bold; /* Pone el texto en negrita */
+        }
+
+        .bienvenida {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            height: 170px;
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar shadow-sm">
         <div class="container-flex base">
@@ -24,25 +53,25 @@
             </a>
         </div>
         <div class="btn-general row justify-content-around">
-            <div class="btn-login col-5">
+            <div class="btn-login col-4">
                 <a href="{% url 'login' %}" class="login">
                     <span class="text mx-auto">Iniciar</span>
                 </a>
             </div>
-            <div class="btn-register col-5">
-                <a href="{% url 'register_url' %}" class="register">Registrate</a>
+            <div class="btn-register col-4">
+                <a href="{% url 'register_url' %}" class="register">Regístrate</a>
             </div>
         </div>
     </nav>
     <div class="container-flex bienvenida">
-        <h1 class="display5">Bienvenid@</h1>
+        <h1 class="display5">¡Bienvenid@!</h1>
     </div>
-    <div class="container-flex mx-auto description">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi, necessitatibus? Excepturi corporis dolorem nostrum dolore dolores perspiciatis, similique porro facere error nam suscipit illum natus rem, labore molestiae laborum aliquam quaerat totam repellendus odit! Voluptatem asperiores consequuntur laborum, fuga placeat eaque veniam, quidem assumenda maxime molestias, velit nam odit sapiente repellendus reprehenderit facere unde rem iure ducimus veritatis aliquam voluptate eos rerum. Accusantium maiores nisi quaerat, quam optio cumque. Perspiciatis, ipsa. Vero nobis rem cum vitae esse et aspernatur rerum fugit quod consequatur voluptatum fugiat ipsa harum blanditiis doloremque excepturi, error aliquam quidem deserunt tenetur itaque perspiciatis. Dolorem, repellat eligendi.</p>
+    <div class="container-flex mx-auto description bordered-container">
+        <p>¿Sabías que la evidencia científica respalda de manera contundente la influencia humana en el calentamiento global y sus consecuencias? La "huella de carbono" se refiere a la cantidad total de gases de efecto invernadero, especialmente dióxido de carbono, liberados directa o indirectamente por un individuo, organización, evento o producto a lo largo de su ciclo de vida. Esta huella es un indicador fundamental de nuestro impacto ambiental y contribuye significativamente al cambio climático. Reducir la huella de carbono es esencial para mitigar los efectos negativos del calentamiento global, ya que una menor emisión de gases de efecto invernadero ayuda a frenar el aumento de la temperatura global. Al disminuir nuestra huella de carbono, contribuimos de manera activa a la preservación del medio ambiente y al bienestar a largo plazo de nuestro planeta.</p>
     </div>
-    <div class="container-flex mx-auto unete">
-        <h3 class="display3">¿Estas interesad@ en aportar tu granito de arena?
-            <a class="hazlo" href="{% url 'login' %}">¡Hazlo ahora!</a></h3>
+    <div class="container-flex mx-auto unete bordered-container">
+        <h3 class="display3">¿Estás interesad@ en aportar tu granito de arena?<br>
+        <a class="hazlo" href="{% url 'login' %}">¡Hazlo ahora!</a></h3>
     </div>
 </body>
 </html>

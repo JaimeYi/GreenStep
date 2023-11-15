@@ -3,11 +3,19 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'calculadora_styles' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/calculadora_styles.css' %}">
 
 <body>
     <section class="home">
-        <a href="{% url 'calculo' %}" class="btn btn-success">Calculo</a>
+        <div class="base">
+            <h1 class="text">Calculadora</h1>
+            <div class="container-text">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa totam quibusdam quae? Voluptatum magni commodi autem quidem ex quasi incidunt illo ipsa, inventore suscipit, praesentium voluptatem in. Harum ipsa corporis beatae amet in, cumque provident natus vitae culpa illum laborum.</p>
+            </div>
+            <div class="container">
+                <a href="{% url 'calculo' %}" class="ov-btn-grow-ellipse">Actualiza tu huella de carbono</a>
+            </div>
+        </div>
     </section>
 </body>
 

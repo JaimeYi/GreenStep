@@ -118,7 +118,7 @@ form .page .btns button.next {
     position: relative;
     height: 27px;
     width: 27px;
-    border: 2px solid #000;
+    border: 2px solid ;
     display: inline-block;
     border-radius: 50%;
     transition: 0.2s;
@@ -142,7 +142,7 @@ form .page .btns button.next {
     right: -58px;
     height: 3px;
     width: 44px;
-    background: #262626;
+    background: var(--text-body-color);
 }
 
 .progress-bare .step .bullet.active::after {

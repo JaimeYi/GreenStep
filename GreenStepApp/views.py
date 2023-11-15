@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 import requests
 from api.models import Vehiculo
 from .models import Encuesta
+import json
 
 # Create your views here.
 def inicio(request):
@@ -20,7 +21,27 @@ def calculadora(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    if request.user.is_authenticated:
+        respuestas_usuario = Encuesta.objects.filter(usuario=request.user)
+        labels = ['kilometros conducidos', 'promedio de electricidad', 'vuelos', 'carnes rojas', 'reciclaje', 'transporte', 'jardin', 'consumo de agua']
+        data = []
+
+        for respuesta in respuestas_usuario:
+            data.append([
+                respuesta.kms_conducidos,
+                respuesta.promedio_electricidad,
+                respuesta.vuelos,
+                respuesta.carnes_rojas,
+                respuesta.reciclaje,
+                respuesta.transporte,
+                respuesta.jardin,
+                respuesta.agua_promedio,
+            ])
+            data_transposed = list(map(list, zip(*data)))
+            labels_json = json.dumps(labels)
+            data_json = json.dumps(data_transposed)
+        return render(request, 'profile.html', {'labels': labels_json, 'data': data_json})
+    return render(request, 'profile.html', {'respuestas': "none"})
 
 @login_required
 def mundo(request):
@@ -50,7 +71,7 @@ def calcularhuella(request):
     #esta parte suma los valores del formulario y lo encasilla en un intervalo 
     for i in variables:
         suma += int(request.GET[i])
-    if suma >= 4:
+    if suma <= 4:
         carbono = "bajo"
     elif 4 < suma <= 10:
         carbono = "moderada"
@@ -71,8 +92,5 @@ def calcularhuella(request):
         suma_puntaje = suma
     )
     encuesta.save()
-
-    tipo = request.GET["tipo_de_vehiculo"]
-    print(tipo)
 
     return render(request, 'calculo.html', {'mensaje': mensaje})

@@ -13,7 +13,7 @@ body {
 .container {
     margin-top: 15px;
     width: 450px;
-    background: #fff;
+    background: var(--sidebar-color);
     border-radius: 5px;
     text-align: center;
     padding: 50px 35px 10px 35px;
@@ -22,6 +22,7 @@ body {
     font-size: 35px;
     font-weight: 600;
     margin: 0 0 30px 0;
+    color: var(--text-body-color);
 }
 
 .container .form-outer{
@@ -43,6 +44,7 @@ body {
     text-align: left;
     font-size: 17px;
     font-weight: 500;
+    color: var(--text-body-color);
 }
 
 .form-outer form .page .field {
@@ -106,7 +108,7 @@ form .page .btns button.next {
 .progress-bare .step p{
     font-size: 18px;
     font-weight: 500;
-    color: #000;
+    color: var(--text-body-color);
     margin-bottom: 8px;
     transition: 0.2s;
 }
@@ -119,7 +121,7 @@ form .page .btns button.next {
     position: relative;
     height: 27px;
     width: 27px;
-    border: 2px solid #000;
+    border: 2px solid var(--text-body-color);
     display: inline-block;
     border-radius: 50%;
     transition: 0.2s;
@@ -143,7 +145,7 @@ form .page .btns button.next {
     right: -58px;
     height: 3px;
     width: 44px;
-    background: #262626;
+    background: var(--text-body-color);
 }
 
 .progress-bare .step .bullet.active::after {
