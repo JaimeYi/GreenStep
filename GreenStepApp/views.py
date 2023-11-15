@@ -72,4 +72,7 @@ def calcularhuella(request):
     )
     encuesta.save()
 
+    tipo = request.GET["tipo_de_vehiculo"]
+    print(tipo)
+
     return render(request, 'calculo.html', {'mensaje': mensaje})
