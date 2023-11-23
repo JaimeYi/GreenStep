@@ -26,6 +26,9 @@ def profile(request):
         labels = ['kilometros conducidos', 'promedio de electricidad', 'vuelos', 'carnes rojas', 'reciclaje', 'transporte', 'jardin', 'consumo de agua']
         data = []
 
+        labels_json = json.dumps(labels)
+        data_json = json.dumps(data)  # Se define data_json con un valor predeterminado
+
         for respuesta in respuestas_usuario:
             data.append([
                 respuesta.kms_conducidos,
@@ -38,10 +41,12 @@ def profile(request):
                 respuesta.agua_promedio,
             ])
             data_transposed = list(map(list, zip(*data)))
-            labels_json = json.dumps(labels)
-            data_json = json.dumps(data_transposed)
+            data_json = json.dumps(data_transposed)  # Se actualiza data_json dentro del bucle
+
         return render(request, 'profile.html', {'labels': labels_json, 'data': data_json})
+    
     return render(request, 'profile.html', {'respuestas': "none"})
+
 
 @login_required
 def mundo(request):
