@@ -17,36 +17,42 @@
         </div>
       </div>
       <div>
-        <canvas id="myChart" width="400" height="100"></canvas>
+        <div class="card" style="width: 500px;">
+          <div class="card-body">
+            <canvas id="myChart" width="500" height="300"></canvas>
+          </div>
+        </div>
       </div>
       
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       
       <script>
-        const ctx = document.getElementById('myChart');
-      
+        const labels = JSON.parse('{{ labels|safe }}');
+        const data = JSON.parse('{{ data|safe }}');
+        
+        const ctx = document.getElementById('myChart').getContext('2d');
+        
         new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: {{labels|safe}},
-            datasets: [{
-              label: 'Tus Datos',
-              data: {{data|safe}},
-              backgroundColor: [
-                'green'
-              ],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Tus Datos',
+                    data: data,
+                    backgroundColor: ['green'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
-          }
         });
-      </script>
+        </script>
+        
       
       
     </section>

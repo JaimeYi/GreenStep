@@ -24,7 +24,22 @@ def calculadora(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    if request.user.is_authenticated:
+        respuestas_usuario = Encuesta.objects.filter(usuario=request.user)
+        label = []
+        data =[]
+        for i in respuestas_usuario[len(respuestas_usuario)-3:]:
+            fecha = str(i.fecha_respuesta)
+            fecha = fecha[:11]
+            data.append(float(i.carbono_generado))
+            label.append(fecha)
+
+        labels_json = json.dumps(label)
+        data_json = json.dumps(data)
+
+        return render(request, 'profile.html', {'labels': labels_json, 'data': data_json})
+    
+    return render(request, 'profile.html', {'respuestas': "none"})
 
 
 @login_required
