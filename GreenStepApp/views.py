@@ -26,6 +26,7 @@ def calculadora(request):
 def profile(request):
     return render(request, 'profile.html')
 
+
 @login_required
 def mundo(request):
     return render(request, 'mundo.html')
