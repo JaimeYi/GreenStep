@@ -13,7 +13,10 @@ def inicio(request):
 def home(request):
     datos = Encuesta.objects.filter(usuario=request.user)
     carbono = datos.values_list('carbono_generado', flat=True)
-    carbono = carbono[len(carbono)-1]
+    if len(carbono) == 0:
+        carbono = 0
+    else:
+        carbono = carbono[len(carbono)-1]
     message = f"Tu huella de carbono es {carbono} toneladas"
     return render(request, 'home.html', {'message': message})
 
@@ -28,16 +31,29 @@ def profile(request):
         respuestas_usuario = Encuesta.objects.filter(usuario=request.user)
         label = []
         data =[]
-        for i in respuestas_usuario[len(respuestas_usuario)-3:]:
-            fecha = str(i.fecha_respuesta)
-            fecha = fecha[:11]
-            data.append(float(i.carbono_generado))
-            label.append(fecha)
+        cantidad_de_respuesta = ""
+
+        if len(respuestas_usuario) == 0:
+            label.append('Sin registro')
+            data.append(0)
+            cantidad_de_respuesta = "0"
+        elif 0 < len(respuestas_usuario) < 5:
+            for i in respuestas_usuario:
+                fecha = str(i.fecha_respuesta)
+                fecha = fecha[:16]
+                data.append(float(i.carbono_generado))
+                label.append(fecha)
+        elif len(respuestas_usuario) >= 5:
+            for i in respuestas_usuario[len(respuestas_usuario)-5:]:
+                fecha = str(i.fecha_respuesta)
+                fecha = fecha[:11]
+                data.append(float(i.carbono_generado))
+                label.append(fecha)
 
         labels_json = json.dumps(label)
         data_json = json.dumps(data)
 
-        return render(request, 'profile.html', {'labels': labels_json, 'data': data_json})
+        return render(request, 'profile.html', {'labels': labels_json, 'data': data_json, 'respuestas': cantidad_de_respuesta})
     
     return render(request, 'profile.html', {'respuestas': "none"})
 

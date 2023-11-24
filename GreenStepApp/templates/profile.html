@@ -9,24 +9,37 @@
 
 <body>
     <section class="home">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{% static 'img/default.jpg' %}"  width="100" height="100" >
-        <div class="media-body">
-          <h2 class="account-heading body-text">{{ user.username }}</h2>
-          <p class="text-secondary body-text">{{ user.email }}</p>
+      <div class="cuerpo">
+        {% if respuestas == "0" %}
+        <div class="container-flex glass">
+          <i class='icono-lock bx bx-lock-alt'></i>
+          <p class="title">Funcionalidad no disponible</p>
+          <p class="subtitle">Para acceder a esta función calcula tu huella de carbono</p>
         </div>
-      </div>
-      <div>
-        <div class="card" style="width: 500px;">
-          <div class="card-body">
-            <canvas id="myChart" width="500" height="300"></canvas>
+        {% endif %}
+        <div class="content">
+          <div class="media">
+            <img class="rounded-circle account-img" src="{% static 'img/default.jpg' %}"  width="100" height="100" >
+            <div class="media-body">
+              <h2 class="account-heading body-text">{{ user.username }}</h2>
+              <p class="text-secondary body-text">{{ user.email }}</p>
+            </div>
+          </div>
+          <div>
+            <div class="card" style="width: 500px;">
+              <div class="card-body">
+                <canvas id="myChart" width="500" height="300"></canvas>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      
+
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       
       <script>
+        console.log('Labels:', '{{ labels|safe }}');
+        console.log('Data:', '{{ data|safe }}');
         const labels = JSON.parse('{{ labels|safe }}');
         const data = JSON.parse('{{ data|safe }}');
         
@@ -37,7 +50,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Tus Datos',
+                    label: 'Tu huella de carbono',
                     data: data,
                     backgroundColor: ['green'],
                     borderWidth: 1
