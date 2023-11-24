@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 import requests
-from api.models import Vehiculo
-from .models import Encuesta
+from .models import Encuesta, Carbono
 import json
 
 # Create your views here.
@@ -12,36 +11,20 @@ def inicio(request):
 
 @login_required
 def home(request):
-    return render(request, 'home.html')
+    datos = Encuesta.objects.filter(usuario=request.user)
+    carbono = datos.values_list('carbono_generado', flat=True)
+    carbono = carbono[len(carbono)-1]
+    message = f"Tu huella de carbono es {carbono} toneladas"
+    return render(request, 'home.html', {'message': message})
+
 
 @login_required
 def calculadora(request):
-    vehiculos = Vehiculo.objects.all()
-    return render (request, 'calculadora.html', {"vehiculos": vehiculos})
+    return render (request, 'calculadora.html')
 
 @login_required
 def profile(request):
-    if request.user.is_authenticated:
-        respuestas_usuario = Encuesta.objects.filter(usuario=request.user)
-        labels = ['kilometros conducidos', 'promedio de electricidad', 'vuelos', 'carnes rojas', 'reciclaje', 'transporte', 'jardin', 'consumo de agua']
-        data = []
-
-        for respuesta in respuestas_usuario:
-            data.append([
-                respuesta.kms_conducidos,
-                respuesta.promedio_electricidad,
-                respuesta.vuelos,
-                respuesta.carnes_rojas,
-                respuesta.reciclaje,
-                respuesta.transporte,
-                respuesta.jardin,
-                respuesta.agua_promedio,
-            ])
-            data_transposed = list(map(list, zip(*data)))
-            labels_json = json.dumps(labels)
-            data_json = json.dumps(data_transposed)
-        return render(request, 'profile.html', {'labels': labels_json, 'data': data_json})
-    return render(request, 'profile.html', {'respuestas': "none"})
+    return render(request, 'profile.html')
 
 @login_required
 def mundo(request):
@@ -67,7 +50,107 @@ def calcularhuella(request):
         "jardin",
         "agua_promedio"
     ]
+
     suma = 0
+    carbono_total = 0
+
+    for m in variables:
+        if m == "kms_conducidos":
+            if int(request.GET[m]) == 0:
+                carbono_auto = 0.00715
+                carbono_total += carbono_auto
+            elif int(request.GET[m]) == 1:
+                carbono_auto = 0.0143
+                carbono_total += carbono_auto
+            else:
+                carbono_auto = 0.0286
+                carbono_total += carbono_auto
+        elif m == "promedio_electricidad":
+            if int(request.GET[m]) == 0:
+                carbono_electricidad = 0.000709*100
+                carbono_total += carbono_electricidad
+            elif int(request.GET[m]) == 1:
+                carbono_electricidad = 0.000709*200
+                carbono_total += carbono_electricidad
+            else:
+                carbono_electricidad = 0.000709*300
+                carbono_total += carbono_electricidad
+        elif m == "vuelos":
+            if int(request.GET[m]) == 0:
+                carbono_vuelos = 0
+                carbono_total += carbono_vuelos
+            elif int(request.GET[m]) == 1:
+                carbono_vuelos = 0.000285*4500
+                carbono_total += carbono_vuelos
+            else:
+                carbono_vuelos = 0.000285*9000
+                carbono_total += carbono_vuelos
+        elif m == "carnes_rojas":
+            if int(request.GET[m]) == 0:
+                carne = 0.0006625
+                carbono_total += carne
+            elif int(request.GET[m]) == 1:
+                carne = 0.0006625*2
+                carbono_total += carne
+            else:
+                carne = 0.0006625*4
+                carbono_total += carne
+        elif m == "reciclaje":
+            if int(request.GET[m]) == 0:
+                reciclaje_c = 0
+                carbono_total += reciclaje_c
+            elif int(request.GET[m]) == 1:
+                reciclaje_c = -0.00833
+                carbono_total += reciclaje_c
+            else:
+                reciclaje_c = -0.00833*2
+                carbono_total += reciclaje_c
+        elif m == "transporte":
+            if int(request.GET[m]) == 0:
+                transporte_publico = 0.0005704
+                carbono_total += transporte_publico
+            elif int(request.GET[m]) == 1:
+                transporte_publico = 0.0005704*2
+                carbono_total += transporte_publico
+            else:
+                transporte_publico = 0.0005704*3
+                carbono_total += transporte_publico
+        elif m == "jardin":
+            if int(request.GET[m]) == 0:
+                jardin_c = 0
+                carbono_total += jardin_c
+            elif int(request.GET[m]) == 1:
+                jardin_c = -0.00013
+                carbono_total += jardin_c
+            else:
+                jardin_c = -0.00013*2
+                carbono_total += jardin_c
+        elif m == "agua_promedio":
+            if int(request.GET[m]) == 0:
+                agua = 0.023
+                carbono_total += agua
+            elif int(request.GET[m]) == 1:
+                agua = 0.023*2
+                carbono_total += agua
+            else:
+                agua = 0.023*3
+                carbono_total += agua
+    
+    carbono_total = round(carbono_total, 3)
+
+    carbono_general = Carbono(
+        usuario = request.user,
+        carbono_auto = carbono_auto,
+        carbono_electricidad = carbono_electricidad,
+        carbono_vuelos = carbono_vuelos,
+        carne = carne,
+        reciclaje_c = reciclaje_c,
+        transporte_publico = transporte_publico,
+        jardin_c = jardin_c,
+        agua = agua
+    )
+    carbono_general.save()
+
     #esta parte suma los valores del formulario y lo encasilla en un intervalo 
     for i in variables:
         suma += int(request.GET[i])
@@ -77,7 +160,7 @@ def calcularhuella(request):
         carbono = "moderada"
     else:
         carbono = "alto"
-    mensaje = f"Su huella de carbono es {carbono}, puntaje: {suma}"
+    mensaje = f"Su huella de carbono es {carbono}, puntaje: {suma}, carbono total: {carbono_total} toneladas"
     #esta parte guarda los datos introducidos en el formulario y los sube a la base de datos
     encuesta = Encuesta(
         usuario = request.user,
@@ -89,7 +172,8 @@ def calcularhuella(request):
         transporte = int(request.GET["transporte"]),
         jardin = int(request.GET["jardin"]),
         agua_promedio = int(request.GET["agua_promedio"]),
-        suma_puntaje = suma
+        suma_puntaje = suma,
+        carbono_generado = carbono_total
     )
     encuesta.save()
 

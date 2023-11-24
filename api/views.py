@@ -65,3 +65,4 @@ class VehiculoView(View):
         else:
             datos={'message': 'Datos no encontrados'}
         return JsonResponse(datos)
+#############################################################

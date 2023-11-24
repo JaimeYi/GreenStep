@@ -6,3 +6,39 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
     }
+
+.text-top {
+    position: relative;
+    display: flex;
+    margin-left: 30px;
+    margin-top: 15px;
+    height: 100px;
+}
+
+.body-page {
+    position: relative;
+    margin-left: 30px;
+}
+
+h1 { 
+    position: absolute;
+    top: 0;
+    color: var(--text-body-color);
+}
+
+h3 {
+    position: absolute;
+    bottom: 0;
+    color: var(--text-body-color);
+}
+
+.card {
+    position: absolute;
+    left: 50%;
+    width: 500px;
+    height: 200px;
+    box-shadow: 5px 5px 20px var(--container-color);
+    background-color: var(--sidebar-color);
+    color: var(--text-body-color);
+    transform: translateX(-50%);
+}
