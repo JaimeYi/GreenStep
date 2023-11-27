@@ -4,27 +4,234 @@
 
 {% block content %}
 
-<style>
-    .container-flex {
-        width: 950px;
-    }
-    
-    .tips{
-        border: 5px solid var(--container-color); 
-        padding: 15px; 
-        margin: 20px 0;
-        border-radius: 8px;
-        font-size: 103%;
-        color: var(--text-body-color); 
-    }
-</style>
+<link rel="stylesheet" href="{% static 'css/mundo.css' %}">
 
 <body>
     <section class="home">
-        <h1 class="text">Tu Mundo</h1>
-        <div class="container-flex mx-auto tips">
-            <p>Reducir la huella de carbono es esencial para mitigar el impacto ambiental y contribuir a la sostenibilidad del planeta. Al adoptar hábitos conscientes, podemos marcar la diferencia. <br><br><br>1.Recicla conscientemente: <br><br>Separa tus residuos en categorías como papel, cartón, plástico, vidrio y metal para facilitar el proceso de reciclaje. <br><br><br>2.Reduce, reutiliza, recicla: <br><br>Prioriza la reducción del consumo, reutiliza productos siempre que sea posible y recicla de manera responsable para minimizar la generación de residuos. <br><br><br>3.Ahorro de energía en casa: <br><br>Apaga luces y dispositivos electrónicos cuando no los estés utilizando. Utiliza bombillas de bajo consumo energético y considera la instalación de paneles solares. <br><br><br>4.Transporte sostenible: <br><br>Opta por medios de transporte más ecológicos, como caminar, andar en bicicleta o utilizar el transporte público. Si es posible, considera vehículos eléctricos. <br><br><br>5.Compra responsable: <br><br>Elige productos con etiquetas ecológicas, preferiblemente fabricados con materiales reciclables y procesos sostenibles. <br><br><br>6.Cuida el agua: <br><br>Reduce el consumo de agua en casa cerrando los grifos correctamente y arreglando cualquier fuga. Considera la instalación de dispositivos de ahorro de agua. <br><br><br>7.Dieta más sostenible: <br><br>Reduce el consumo de alimentos de origen animal y opta por una dieta más basada en plantas para disminuir la huella de carbono asociada a la producción de carne. <br><br><br>8.Plantación de árboles: <br><br>Participa en actividades de reforestación o contribuye a programas de plantación de árboles para contrarrestar las emisiones de carbono. <br><br><br>9.Composta de residuos orgánicos: <br><br>Composta los residuos orgánicos en lugar de desecharlos, lo que no solo reduce la cantidad de desechos sino que también enriquece el suelo. <br><br><br>10.Educación y concientización: <br><br>Informa a amigos y familiares sobre la importancia de reducir la huella de carbono y el reciclaje para fomentar prácticas sostenibles en la comunidad. <br><br><br>Al adoptar estos hábitos en la vida diaria, contribuimos significativamente a la preservación del medio ambiente y a la construcción de un futuro más sostenible.</p>
-
+        <div class="cuerpo">
+            <h1 class="text">Tu Mundo</h1>
+            <p class="sup">
+                Reducir la huella de carbono es esencial para mitigar el impacto ambiental y contribuir a la sostenibilidad del planeta. Al adoptar hábitos conscientes, podemos marcar la diferencia. <br><br>A continuacion, te dejamos algunos consejos para generar menos huella de carbono:
+            </p>
+            <div class="card">
+                <div class="card-body">
+                    <div class="gaia">
+                        <img src="{% static 'img/cara-robotin.png' %}" alt="robotin" class="robotin">
+                        <p class="gaia-name" style="font-size: large; font-weight: 900;">Ita</p>
+                    </div>
+                    {% if responde == 'no' %}
+                    <div class="msg" style="color: var(--text-body-color);">
+                        Parece que aun no actualizas tu huella de carbono, dirigete a la sección "Calculadora" para actualizar tu huella de carbono, o haz click <a href="{% url 'calculadora' %}" style="color: var(--special-body);">aqui</a>, para que asi pueda recomendarte algunos de los puntos que estan a mi costado
+                    </div>
+                    {% else %}
+                        {% if 'felicidades' in data %}
+                            Quiero felicitarte, ya que revise los datos de la ultima actualización que hiciste de tu huella de carbono, y no tienes ningun punto alarmantemente alto. Sigue asi, y si quieres seguir reduciendo aun más tu huella de carbono, puedes revisar los consejos que se encuentran a mi costado. <br><br>Cada uno de estos consejos los puedes ver más detalladamente si haces click en el circulo verde.
+                        {% else %}
+                            Revise los ultimos datos que ingresaste en la encuesta y me percate de que hay aspectos en los que puedes mejorar respecto a tu huella de carbono, para mejorar en estos aspectos te recomiendo revisar los consejos que tengo a mi costado. En tu caso, te recomendaria mas especificamente los consejos de:
+                            {% if 'kms_conducidos' in data %}
+                                <li>Transporte sostenible</li>
+                            {% endif %}
+                            {% if 'promedio_electricidad' in data %}
+                                <li>Ahorro de energia en casa</li>
+                            {% endif %}
+                            {% if 'carnes_rojas' in data %}
+                                <li>Dieta más sostenible</li>
+                            {% endif %}
+                            {% if 'reciclaje' in data %}
+                                <li>Recicla constantemente</li>
+                                <li>Reduce, reutiliza y recicla</li>
+                                <li>Composta de residuos orgánicos</li>
+                            {% endif %}
+                            {% if 'carnes_rojas' in data %}
+                                <li>Dieta más sostenible</li>
+                            {% endif %}
+                            {% if 'transporte' in data and 'kms_conducidos' not in data %}
+                                <li>Transporte sostenible</li>
+                            {% endif %}
+                            {% if 'jardin' in data %}
+                                <li>Plantación de arboles</li>
+                            {% endif %}
+                            {% if 'agua_promedio' in data %}
+                                <li>Cuida el agua</li>
+                            {% endif %}
+                            Cada uno de estos consejos los puedes ver más detalladamente si haces click en el circulo verde.
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <p class="d-inline-flex gap-1">
+                <div class="container">
+                    <div class="row">
+                        <div class="balls col">
+                            <a class="botn" data-bs-toggle="modal" href="#exampleModal1" role="button" aria-expanded="false" aria-controls="exampleModal"><i class='bx bx-bulb iconos'></i></a>
+                            <a class="botn" data-bs-toggle="modal" href="#exampleModal2" role="button" aria-expanded="false" aria-controls="exampleModal"><i class='bx bx-bulb iconos'></i></a>  
+                            <a class="botn" data-bs-toggle="modal" href="#exampleModal3" role="button" aria-expanded="false" aria-controls="exampleModal"><i class='bx bx-bulb iconos'></i></a>
+                            <a class="botn" data-bs-toggle="modal" href="#exampleModal4" role="button" aria-expanded="false" aria-controls="exampleModal"><i class='bx bx-bulb iconos'></i></a>
+                            <a class="botn" data-bs-toggle="modal" href="#exampleModal5" role="button" aria-expanded="false" aria-controls="exampleModal"><i class='bx bx-bulb iconos'></i></a>
+                            <a class="botn" data-bs-toggle="modal" href="#exampleModal6" role="button" aria-expanded="false" aria-controls="exampleModal"><i class='bx bx-bulb iconos'></i></a>
+                            <a class="botn" data-bs-toggle="modal" href="#exampleModal7" role="button" aria-expanded="false" aria-controls="exampleModal"><i class='bx bx-bulb iconos'></i></a>
+                            <a class="botn" data-bs-toggle="modal" href="#exampleModal8" role="button" aria-expanded="false" aria-controls="exampleModal"><i class='bx bx-bulb iconos'></i></a>
+                            <a class="botn" data-bs-toggle="modal" href="#exampleModal9" role="button" aria-expanded="false" aria-controls="exampleModal"><i class='bx bx-bulb iconos'></i></a>
+                            <a class="botn" data-bs-toggle="modal" href="#exampleModal10" role="button" aria-expanded="false" aria-controls="exampleModal"><i class='bx bx-bulb iconos'></i></a>
+                        </div>
+                        <div class="names col">
+                            <div class="namet"><p class="enunciado">Recicla conscientemente</p></div>
+                            <div class="namet"><p class="enunciado">Reduce, reutiliza y recicla</p></div>
+                            <div class="namet"><p class="enunciado">Ahorro de energía en casa</p></div>
+                            <div class="namet"><p class="enunciado">Transporte sostenible</p></div>
+                            <div class="namet"><p class="enunciado">Compra responsable</p></div>
+                            <div class="namet"><p class="enunciado">Cuida el agua</p></div>
+                            <div class="namet"><p class="enunciado">Dieta más sostenible</p></div>
+                            <div class="namet"><p class="enunciado">Plantación de árboles</p></div>
+                            <div class="namet"><p class="enunciado">Composta de residuos orgánicos</p></div>
+                            <div class="namet"><p class="enunciado">Educación y concientización</p></div>
+                        </div>
+                    </div>
+                </div>
+            </p>
+            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Recicla conscientemente</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Separa tus residuos en categorías como papel, cartón, plástico, vidrio y metal para facilitar el proceso de reciclaje.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Reduce, reutiliza, recicla</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Prioriza la reducción del consumo, reutiliza productos siempre que sea posible y recicla de manera responsable para minimizar la generación de residuos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Ahorro de energía en casa</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Apaga luces y dispositivos electrónicos cuando no los estés utilizando. Utiliza bombillas de bajo consumo energético y considera la instalación de paneles solares.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Transporte sostenible</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Opta por medios de transporte más ecológicos, como caminar, andar en bicicleta o utilizar el transporte público. Si es posible, considera vehículos eléctricos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Compra responsable</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Elige productos con etiquetas ecológicas, preferiblemente fabricados con materiales reciclables y procesos sostenibles.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Compra responsable</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Elige productos con etiquetas ecológicas, preferiblemente fabricados con materiales reciclables y procesos sostenibles.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Cuida el agua</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Reduce el consumo de agua en casa cerrando los grifos correctamente y arreglando cualquier fuga.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Dieta más sostenible</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Reduce el consumo de alimentos de origen animal y opta por una dieta más basada en plantas para disminuir la huella de carbono asociada a la producción de carne.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal8" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Plantación de árboles</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Participa en actividades de reforestación o contribuye a programas de plantación de árboles para contrarrestar las emisiones de carbono.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal9" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Composta de residuos orgánicos</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Composta los residuos orgánicos en lugar de desecharlos, lo que no solo reduce la cantidad de desechos sino que también enriquece el suelo.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal10" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Educación y concientización</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Informa a amigos y familiares sobre la importancia de reducir la huella de carbono y el reciclaje para fomentar prácticas sostenibles en la comunidad.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </body>

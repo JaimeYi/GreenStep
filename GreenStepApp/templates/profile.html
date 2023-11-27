@@ -15,6 +15,9 @@
           <i class='icono-lock bx bx-lock-alt'></i>
           <p class="title">Funcionalidad no disponible</p>
           <p class="subtitle">Para acceder a esta función calcula tu huella de carbono</p>
+          <div class="cont-boton">
+            <a href="{% url 'calculadora' %}" class="boton">Calcula tu huella</a>
+          </div>
         </div>
         {% endif %}
         <div class="content">
@@ -26,9 +29,9 @@
             </div>
           </div>
           <div>
-            <div class="card" style="width: 500px;">
+            <div class="card" style="width: 600px;">
               <div class="card-body">
-                <canvas id="myChart" width="500" height="300"></canvas>
+                <canvas id="myChart" width="300" height="200"></canvas>
               </div>
             </div>
           </div>
@@ -38,8 +41,6 @@
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       
       <script>
-        console.log('Labels:', '{{ labels|safe }}');
-        console.log('Data:', '{{ data|safe }}');
         const labels = JSON.parse('{{ labels|safe }}');
         const data = JSON.parse('{{ data|safe }}');
         
@@ -53,7 +54,8 @@
                     label: 'Tu huella de carbono',
                     data: data,
                     backgroundColor: ['green'],
-                    borderWidth: 1
+                    borderWidth: 1,
+                    borderColor: ['lightgreen']
                 }]
             },
             options: {

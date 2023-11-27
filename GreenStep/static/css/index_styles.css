@@ -17,6 +17,8 @@
     --text-color: #707070;
     --text-body-color: rgb(17, 17, 17);
     --container-color: rgb(64, 180, 96);
+    --special-body : rgb(64, 180, 96);
+    --btn: rgb(49, 145, 76);
 
     /* ====== transiciones ======*/
     --tran-02: all 0.2s ease;
@@ -39,7 +41,8 @@ body.dark {
     --text-color: #ccc;
     --text-body-color: #ccc;    
     --container-color : rgb(42, 56, 136);
-    
+    --special-body: #fff;
+    --btn: #242525;
 }
 
 /* ====== Sidebar ====== */
@@ -273,7 +276,7 @@ body.dark .switch::before {
     font-size: 30px;
     font-weight: 500;
     color: var(--text-color);
-    padding: 8px 40px;
+    padding: 8px 0;
 }
 
 .sidebar.close ~ .home {

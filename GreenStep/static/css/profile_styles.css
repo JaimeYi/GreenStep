@@ -67,3 +67,49 @@
     transform: translate(-50%, -50%);
     color: var(--text-color);
 }
+
+.cont-boton {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+}
+
+.boton {
+    background: var(--text-color);
+    border: 2px solid var(--text-color);    
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-weight: 500;
+    overflow: hidden;
+    color: var(--sidebar-color);
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+.boton:hover {
+    color: var(--text-color);
+}
+
+.boton::after {
+    content: "";
+    background: var(--sidebar-color);
+    position: absolute;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    border-radius: 50%;
+    left: -50%;
+    right: -50%;
+    top: -150%;
+    bottom: -150%;
+    transform: scale(0, 0);
+    transition: all 0.4s ease-in-out;
+}
+
+.boton:hover::after {
+    transition: all 0.6s ease-in-out;
+    transform: scale(1, 1);
+}
