@@ -46,7 +46,7 @@ def profile(request):
         elif len(respuestas_usuario) >= 5:
             for i in respuestas_usuario[len(respuestas_usuario)-5:]:
                 fecha = str(i.fecha_respuesta)
-                fecha = fecha[:11]
+                fecha = fecha[:16]
                 data.append(float(i.carbono_generado))
                 label.append(fecha)
 
@@ -56,11 +56,6 @@ def profile(request):
         return render(request, 'profile.html', {'labels': labels_json, 'data': data_json, 'respuestas': cantidad_de_respuesta})
     
     return render(request, 'profile.html', {'respuestas': "none"})
-
-
-@login_required
-def mundo(request):
-    return render(request, 'mundo.html')
 
 @login_required
 def nosotros(request):
@@ -210,3 +205,46 @@ def calcularhuella(request):
     encuesta.save()
 
     return render(request, 'calculo.html', {'mensaje': mensaje})
+
+@login_required
+def mundo(request):
+    variables = [
+    "kms_conducidos",
+    "promedio_electricidad",
+    "vuelos",
+    "carnes_rojas",
+    "reciclaje",
+    "transporte",
+    "jardin",
+    "agua_promedio"
+    ]
+
+    data =[]
+
+    respuestas = Encuesta.objects.filter(usuario=request.user)
+    if len(respuestas) == 0:
+        respondio = 'no'
+        return render(request, 'mundo.html', {'responde': respondio, 'data': ['none']})
+    else:
+        ultima_encuesta = respuestas[len(respuestas)-1]
+        respondio = 'si'
+        if ultima_encuesta.kms_conducidos == 2:
+            data.append("kms_conducidos")
+        if ultima_encuesta.promedio_electricidad == 2:
+            data.append("promedio_electricidad")
+        if ultima_encuesta.vuelos == 2:
+            data.append("vuelos")
+        if ultima_encuesta.carnes_rojas == 2:
+            data.append("carnes_rojas")
+        if ultima_encuesta.reciclaje == 0:
+            data.append("reciclaje")
+        if ultima_encuesta.transporte == 0:
+            data.append("transporte")
+        if ultima_encuesta.jardin == 0:
+            data.append("jardin")
+        if ultima_encuesta.agua_promedio == 2:
+            data.append("agua_promedio")
+        if len(data) == 0:
+            data.append("felicidades")
+
+        return render(request, 'mundo.html', {'responde': respondio, 'data': data})

@@ -1,9 +1,9 @@
 /*** ESTILOS BOTÓN GROW ELLIPSE ***/
 .ov-btn-grow-ellipse {
     background: var(--sidebar-color); /* color de fondo */
-    color: var(--primary-color); /* color de fuente */
+    color: var(--special-body); /* color de fuente */
     border: 2px solid var(--primary-color); /* tamaño y color de borde */
-    padding: 16px 20px;
+    padding: 10px 10px;
     border-radius: 50px; /* redondear bordes */
     position: relative;
     z-index: 1;
@@ -13,7 +13,7 @@
     font-weight: 500;
 }
 .ov-btn-grow-ellipse:hover {
-    color: #fff;/* color de fuente hover */
+    color: var(--sidebar-color);/* color de fuente hover */
 }
 .ov-btn-grow-ellipse::after {
     content: "";
