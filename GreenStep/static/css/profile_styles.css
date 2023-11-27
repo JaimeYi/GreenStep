@@ -67,3 +67,22 @@
     transform: translate(-50%, -50%);
     color: var(--text-color);
 }
+
+.boton {
+    background: green; 
+    color: var(--sidebar-color); 
+    border: 2px solid var(--primary-color); 
+    padding: 16px 20px;
+    border-radius: 50px; 
+    position: absolute;
+    left: 3%;
+    top: 50%;
+    overflow: hidden;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 400;
+}
+.boton:hover {
+    color: var(--text-body-color); 
+}
+

@@ -9,6 +9,7 @@
 
 <body>
     <section class="home">
+      <h1 class="text"> Mi Perfil</h1>
       <div class="cuerpo">
         {% if respuestas == "0" %}
         <div class="container-flex glass">
@@ -65,10 +66,12 @@
             }
         });
         </script>
-        
+      <div class="container">
+        <a href="{% url 'calculo' %}" class="boton">Enriquese tu gráfico</a>
+      </div>
       
       
-    </section>
+    <section>
 
 </body>
 
