@@ -8,6 +8,24 @@
 
 <body>
     <section class="home">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="card">
+            <div class="card-body">
+                <div class="ita">
+                    <img src="{% static 'img/cara-robotin.png' %}" alt="" width="50px" height="50px" style="box-shadow: 0 1px var(--primary-color);">
+                    <p class="ita-name">ITA</p>
+                </div>
+                <div class="msg">
+                    Las opciones que tengan un "*" tienen una ayuda para entender bien a que se refiere esa opción, coloca tu cursor sobre la opcion para obtener más detalles sobre esta
+                </div>
+            </div>
+        </div>
         <div class="container">
             <header>Encuesta</header>
             <div class="progress-bare">
@@ -47,11 +65,33 @@
                         <div class="field">
                             <label for="kms_conducidos" class="form-label"></label>
                             <input type="range" class="form-range" min="0" max="2" name="kms_conducidos">
+                            <div class="op">
+                                <div class="op1">Menos de 50 km</div>
+                                <div class="op2">Entre 50 km y 150 km</div>
+                                <div class="op3">Más de 150 km</div>
+                            </div>
                         </div>
-                        <div class="title">¿Cuál es tu consumo promedio de electricidad en casa?</div>
+                        <div class="title">¿Cuál es tu consumo promedio de electricidad en casa?</div> <!---->
                         <div class="field">
                             <label for="promedio_electricidad" class="form-label"></label>
                             <input type="range" class="form-range" min="0" max="2" name="promedio_electricidad">
+                            <div class="op">
+                                <div class="op1">
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Menos de 100kWh por mes">
+                                        Bajo*
+                                    </span>
+                                </div>
+                                <div class="op2">
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Entre 100 kWh y 300 kWh por mes">
+                                        Moderado*
+                                    </span>
+                                </div>
+                                <div class="op3">
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Más de 300 kWh por mes">
+                                        Alto*
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                         <div class="field nextBtn">
                             <button type="button">Siguiente</button>
@@ -62,11 +102,33 @@
                         <div class="field">
                             <label for="vuelos" class="form-label"></label>
                             <input type="range" class="form-range" min="0" max="2" name="vuelos">
+                            <div class="op">
+                                <div class="op1">Ninguno</div>
+                                <div class="op2">1-2 vuelos</div>
+                                <div class="op3">Más de 2 vuelos</div>
+                            </div>
                         </div>
-                        <div class="title">¿Con qué frecuencia comes carne roja?</div>
+                        <div class="title">¿Con qué frecuencia comes carne roja?</div><!---->
                         <div class="field">
                             <label for="carnes_rojas" class="form-label"></label>
                             <input type="range" class="form-range" min="0" max="2" name="carnes_rojas">
+                            <div class="op">
+                                <div class="op1">
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Una vez al mes o menos">
+                                        Rara vez*
+                                    </span>
+                                </div>
+                                <div class="op2">
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Una vez a la semana">
+                                        Moderadamente*
+                                    </span>
+                                </div>
+                                <div class="op3">
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Más de una vez a la semana">
+                                        Frecuentemente*
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                         <div class="field btns">
                             <button class="prev-1 prev" type="button">Anterior</button>
@@ -78,11 +140,21 @@
                         <div class="field">
                             <label for="reciclaje" class="form-label"></label>
                             <input type="range" class="form-range" min="0" max="2" name="reciclaje">
+                            <div class="op">
+                                <div class="op3">Sí, siempre reciclo</div>
+                                <div class="op2">A veces reciclo</div>
+                                <div class="op1">No reciclo</div>
+                            </div>
                         </div>
                         <div class="title">¿Usas transporte público o compartido regularmente?</div>
                         <div class="field">
                             <label for="transporte" class="form-label"></label>
                             <input type="range" class="form-range" min="0" max="2" name="transporte">
+                            <div class="op">
+                                <div class="op1">Sí, siempre uso transporte público o compartido</div>
+                                <div class="op2">A veces uso transporte público o compartido</div>
+                                <div class="op3">No uso transporte público o compartido</div>
+                            </div>
                         </div>
                         <div class="field btns">
                             <button class="prev-2 prev" type="button">Anterior</button>
@@ -94,11 +166,33 @@
                         <div class="field">
                             <label for="jardin" class="form-label"></label>
                             <input type="range" class="form-range" min="0" max="2" name="jardin">
+                            <div class="op">
+                                <div class="op1">Sí, tengo un jardín grande</div>
+                                <div class="op2">Sí, tengo un jardín pequeño</div>
+                                <div class="op3">No tengo jardín</div>
+                            </div>
                         </div>
                         <div class="title">¿Cuál es tu consumo de agua promedio?</div>
                         <div class="field">
                             <label for="agua_promedio" class="form-label"></label>
                             <input type="range" class="form-range" min="0" max="2" name="agua_promedio">
+                            <div class="op">
+                                <div class="op1">
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Menos de 100 litros por día">
+                                        Bajo*
+                                    </span>
+                                </div>
+                                <div class="op2">
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Entre 100 y 200 litros por día">
+                                        Moderado*
+                                    </span>
+                                </div>
+                                <div class="op3">
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Más de 200 litros por día">
+                                        Alto*
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                         <div class="field btns">
                             <button class="prev-3 prev" type="button">Anterior</button>
@@ -108,7 +202,6 @@
                 </form>
             </div>
         </div>
-        <h1>{{ mensaje }}</h1>
     </section>
     <script src="{% static 'js/footprint.js' %}"></script>
 </body>

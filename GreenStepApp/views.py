@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 import requests
 from .models import Encuesta, Carbono
 import json
+from login.forms import UserUpdateForm, ProfileUpdateForm
+from django.contrib import messages
 
 # Create your views here.
 def inicio(request):
@@ -14,12 +16,13 @@ def home(request):
     datos = Encuesta.objects.filter(usuario=request.user)
     carbono = datos.values_list('carbono_generado', flat=True)
     if len(carbono) == 0:
-        carbono = 0
+        carbono = str(0)
+        message = "Sin registro"
     else:
-        carbono = carbono[len(carbono)-1]
-    message = f"Tu huella de carbono es {carbono} toneladas"
-    return render(request, 'home.html', {'message': message})
-
+        carbono = str(carbono[len(carbono)-1])
+        carbono = carbono.replace('.',',')
+        message = f"{carbono} toneladas"
+    return render(request, 'home.html', {'message': message, 'carbono': carbono})
 
 @login_required
 def calculadora(request):
@@ -27,11 +30,28 @@ def calculadora(request):
 
 @login_required
 def profile(request):
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST,
+                                    request.FILES,
+                                    instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Tu cuenta ha sido actualizada correctamente')
+            return redirect('profile')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
     if request.user.is_authenticated:
         respuestas_usuario = Encuesta.objects.filter(usuario=request.user)
         label = []
         data =[]
         cantidad_de_respuesta = ""
+        respuestas=len(respuestas_usuario)
+        temp = 0
+        prom = 0
+        cont = 0
 
         if len(respuestas_usuario) == 0:
             label.append('Sin registro')
@@ -49,13 +69,23 @@ def profile(request):
                 fecha = fecha[:16]
                 data.append(float(i.carbono_generado))
                 label.append(fecha)
+        for x in respuestas_usuario:
+            cont += 1
+            temp += float(x.carbono_generado)
+        if temp == 0:
+            temp = '0'
+            prom = f'{temp} Ton'
+        else:
+            temp = str(round(temp/cont, 3))
+            temp = temp.replace('.',',')
+            prom = f'{temp} Ton'
 
         labels_json = json.dumps(label)
         data_json = json.dumps(data)
 
-        return render(request, 'profile.html', {'labels': labels_json, 'data': data_json, 'respuestas': cantidad_de_respuesta})
+        return render(request, 'profile.html', {'labels': labels_json, 'data': data_json, 'respuestas': cantidad_de_respuesta, 'u_form': u_form, 'p_form': p_form, 'cr':respuestas, 'prom': prom})
     
-    return render(request, 'profile.html', {'respuestas': "none"})
+    return render(request, 'profile.html', {'respuestas': "none", 'u_form': u_form, 'p_form': p_form, 'cr':respuestas, 'prom': prom})
 
 @login_required
 def nosotros(request):
@@ -127,10 +157,10 @@ def calcularhuella(request):
                 reciclaje_c = 0
                 carbono_total += reciclaje_c
             elif int(request.GET[m]) == 1:
-                reciclaje_c = -0.00833
+                reciclaje_c = -0.0000833
                 carbono_total += reciclaje_c
             else:
-                reciclaje_c = -0.00833*2
+                reciclaje_c = -0.0000833*2
                 carbono_total += reciclaje_c
         elif m == "transporte":
             if int(request.GET[m]) == 0:
@@ -147,10 +177,10 @@ def calcularhuella(request):
                 jardin_c = 0
                 carbono_total += jardin_c
             elif int(request.GET[m]) == 1:
-                jardin_c = -0.00013
+                jardin_c = -0.000013
                 carbono_total += jardin_c
             else:
-                jardin_c = -0.00013*2
+                jardin_c = -0.000013*2
                 carbono_total += jardin_c
         elif m == "agua_promedio":
             if int(request.GET[m]) == 0:
@@ -203,6 +233,8 @@ def calcularhuella(request):
         carbono_generado = carbono_total
     )
     encuesta.save()
+
+    messages.success(request, f'Muchas gracias por responder la encuesta, ya hemos recopilado tus datos, revisalos en la sección perfil')
 
     return render(request, 'calculo.html', {'mensaje': mensaje})
 

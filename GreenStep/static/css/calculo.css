@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Saira+Extra+Condensed&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -64,7 +66,7 @@ body {
 .form-outer form .page .field button {
     width: 100%;
     height: calc(100% + 5px);
-    margin-top: -20px;
+    margin-top: -5px;
     border: none;
     background: var(--primary-color);
     color: #fff;
@@ -82,7 +84,7 @@ body {
 }
 
 .form-outer form .page .btns button {
-    margin-top: -20px!important;
+    margin-top: -5px!important;
 }
 
 form .page .btns button.prev {
@@ -186,4 +188,58 @@ form .page .btns button.next {
 .progress-bare .step .check.active {
     display: block;
     color: #fff;
+}
+
+.form-outer form .page .field .op {
+    position: absolute;
+    display: flex;
+    font-size: 0.75em;
+    width: 98%;
+    top: 25px;
+}
+
+.form-outer form .page .field .op .op1{
+    position: absolute;
+    left: 0;
+    width: 30%;
+    text-align: start;
+}
+.form-outer form .page .field .op .op2 {
+    position: absolute;
+    left: 50%;
+    width: 30%;
+    transform: translateX(-50%);
+}
+.form-outer form .page .field .op .op3{
+    position: absolute;
+    right: 0;
+    width: 30%;
+    text-align: end;
+}
+
+.card {
+    position: absolute;
+    width: 300px;
+    left: 5%;
+    background: var(--sidebar-color);
+}
+
+.ita {
+    position: relative;
+}
+
+.ita-name {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    margin-left: 75px;
+    font-family: 'Saira Extra Condensed', sans-serif;
+    color: var(--text-body-color);
+    font-size: large;
+    font-weight: 900;
+}
+
+.msg {
+    color: var(--text-body-color);
 }

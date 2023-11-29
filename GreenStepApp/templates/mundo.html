@@ -17,44 +17,45 @@
                 <div class="card-body">
                     <div class="gaia">
                         <img src="{% static 'img/cara-robotin.png' %}" alt="robotin" class="robotin">
-                        <p class="gaia-name" style="font-size: large; font-weight: 900;">Ita</p>
+                        <p class="gaia-name" style="font-size: large; font-weight: 900;">ITA</p>
                     </div>
                     {% if responde == 'no' %}
                     <div class="msg" style="color: var(--text-body-color);">
-                        Parece que aun no actualizas tu huella de carbono, dirigete a la sección "Calculadora" para actualizar tu huella de carbono, o haz click <a href="{% url 'calculadora' %}" style="color: var(--special-body);">aqui</a>, para que asi pueda recomendarte algunos de los puntos que estan a mi costado
+                        Parece que aun no actualizas tu huella de carbono, dirigete a la sección "Calculadora" para actualizar tu huella de carbono, o haz click <a href="{% url 'calculadora' %}" style="color: var(--special-body); text-decoration: none;">aqui</a>, para que asi pueda recomendarte algunos de los puntos que estan a mi costado
                     </div>
                     {% else %}
                         {% if 'felicidades' in data %}
-                            Quiero felicitarte, ya que revise los datos de la ultima actualización que hiciste de tu huella de carbono, y no tienes ningun punto alarmantemente alto. Sigue asi, y si quieres seguir reduciendo aun más tu huella de carbono, puedes revisar los consejos que se encuentran a mi costado. <br><br>Cada uno de estos consejos los puedes ver más detalladamente si haces click en el circulo verde.
+                            <div class="msg" style="color: var(--text-body-color);">
+                                Quiero felicitarte, ya que revise los datos de la última actualización que hiciste de tu huella de carbono, y no tienes ningun punto alarmantemente alto. Sigue asi, si quieres seguir reduciendo aun más tu huella de carbono, puedes revisar los consejos que se encuentran a mi costado. <br><br>Cada uno de estos consejos los puedes ver más detalladamente si haces click en el círculo verde.
+                            </div>
                         {% else %}
-                            Revise los ultimos datos que ingresaste en la encuesta y me percate de que hay aspectos en los que puedes mejorar respecto a tu huella de carbono, para mejorar en estos aspectos te recomiendo revisar los consejos que tengo a mi costado. En tu caso, te recomendaria mas especificamente los consejos de:
-                            {% if 'kms_conducidos' in data %}
-                                <li>Transporte sostenible</li>
-                            {% endif %}
-                            {% if 'promedio_electricidad' in data %}
-                                <li>Ahorro de energia en casa</li>
-                            {% endif %}
-                            {% if 'carnes_rojas' in data %}
-                                <li>Dieta más sostenible</li>
-                            {% endif %}
-                            {% if 'reciclaje' in data %}
-                                <li>Recicla constantemente</li>
-                                <li>Reduce, reutiliza y recicla</li>
-                                <li>Composta de residuos orgánicos</li>
-                            {% endif %}
-                            {% if 'carnes_rojas' in data %}
-                                <li>Dieta más sostenible</li>
-                            {% endif %}
-                            {% if 'transporte' in data and 'kms_conducidos' not in data %}
-                                <li>Transporte sostenible</li>
-                            {% endif %}
-                            {% if 'jardin' in data %}
-                                <li>Plantación de arboles</li>
-                            {% endif %}
-                            {% if 'agua_promedio' in data %}
-                                <li>Cuida el agua</li>
-                            {% endif %}
-                            Cada uno de estos consejos los puedes ver más detalladamente si haces click en el circulo verde.
+                            <div class="msg" style="color: var(--text-body-color);">
+                                Revisé los últimos datos que ingresaste en la encuesta y me percaté de que hay aspectos en los que puedes mejorar respecto a tu huella de carbono, para mejorar en estos aspectos te recomiendo revisar los consejos que tengo a mi costado. En tu caso, te recomendaria mas específicamente los consejos de:
+                                {% if 'kms_conducidos' in data %}
+                                    <li>Transporte sostenible</li>
+                                {% endif %}
+                                {% if 'promedio_electricidad' in data %}
+                                    <li>Ahorro de energia en casa</li>
+                                {% endif %}
+                                {% if 'reciclaje' in data %}
+                                    <li>Recicla constantemente</li>
+                                    <li>Reduce, reutiliza y recicla</li>
+                                    <li>Composta de residuos orgánicos</li>
+                                {% endif %}
+                                {% if 'carnes_rojas' in data %}
+                                    <li>Dieta más sostenible</li>
+                                {% endif %}
+                                {% if 'transporte' in data and 'kms_conducidos' not in data %}
+                                    <li>Transporte sostenible</li>
+                                {% endif %}
+                                {% if 'jardin' in data %}
+                                    <li>Plantación de arboles</li>
+                                {% endif %}
+                                {% if 'agua_promedio' in data %}
+                                    <li>Cuida el agua</li>
+                                {% endif %}
+                                Cada uno de estos consejos los puedes ver más detalladamente si haces click en el círculo verde.
+                            </div>
                         {% endif %}
                     {% endif %}
                 </div>

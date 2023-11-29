@@ -1,63 +1,140 @@
-/*** ESTILOS BOTÓN GROW ELLIPSE ***/
-.ov-btn-grow-ellipse {
-    background: var(--sidebar-color); /* color de fondo */
-    color: var(--special-body); /* color de fuente */
-    border: 2px solid var(--primary-color); /* tamaño y color de borde */
-    padding: 10px 10px;
-    border-radius: 50px; /* redondear bordes */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Saira+Extra+Condensed&display=swap');
+
+.home {
+    margin: 0;
     position: relative;
-    z-index: 1;
-    overflow: hidden;
-    display: inline-block;
-    text-decoration: none;
-    font-weight: 500;
-}
-.ov-btn-grow-ellipse:hover {
-    color: var(--sidebar-color);/* color de fuente hover */
-}
-.ov-btn-grow-ellipse::after {
-    content: "";
-    background: var(--primary-color); /* color de fondo hover */
-    position: absolute;
-    z-index: -1;
-    padding: 16px 20px;
-    display: block;
-    border-radius: 50%;
-    left: -50%;
-    right: -50%;
-    top: -150%;
-    bottom: -150%;
-    transform: scale(0, 0);
-    transition: all 0.4s ease;
-}
-.ov-btn-grow-ellipse:hover::after {
-    transition: all 0.6s ease-out;
-    transform: scale(1, 1);
+    max-height: 99vh;
 }
 
-.base {
-    position: relative;
-    width: 90%;
-    height: 98vh;
-    margin-left: 60px;
-}
-
-.container-text {
+.carta {
+    padding: 30px;
     position: absolute;
-    margin: 5px;
-    padding: 15px;
-    border: 5px solid var(--primary-color);
-    width: auto;
+    width: 50%;
     height: fit-content;
-    max-width: 500px;
+    left: 0%;
+    top: 25%;
+    transform: translate(-20px, -50%);
+    background: var(--sidebar-color);
+    border-left: solid 20px black;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.35);
+    color: var(--text-body-color);
 }
 
-.container {
+.botn {
+    color: #fff;
+    padding: 20px;
+}
+
+.botn:hover{
+    color: #fff;
+}
+
+.cont{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    bottom: 0%;
+    left: 65%;
+    transform: translate(-50%, 10px);
+    color: #fff;
+}
+
+.calculadora {
+    display: grid;
+    grid-template-columns: repeat(4, 75px);
+    grid-template-rows: 160px repeat(5, 75px);
+    background-color: #00916e;
+    padding: 15px;
+    border-radius: 32px;
+    box-shadow: 15px 10px 0px 0px #00000033;
+}
+
+button {
+    cursor: pointer;
+    margin: 5px;
+    padding: 0;
+    border-radius: 32px;
+    font-size: 1.5em;
+    border: none;
+    background-color: #00916e;
+    box-shadow: 5px 5px 10px -3px #00000040, -5px -5px 15px 3px #00ffc11f;
+    color: #fff;
+}
+
+button:active {
+    background-color: #006f54;
+}
+
+button:focus {
+    outline: none;
+}
+
+.cul-2 {
+    grid-column: span 2;
+}
+
+.display {
+    grid-column: 1 / -1;
+    padding: 16px;
+    display: flex;
+    margin: 10px 10px 20px;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: #363636;
+    border-radius: 32px;
+    text-align: right;
+    word-break: break-all;
+    box-shadow: 0px 0px 0px 10px #00000033;
+}
+
+#valor-actual{
+    font-size: 1.5em;
+}
+
+#valor-anterior {
+    font-size: 2em;
+}
+
+.cart-ita{
+    padding: 30px;
+    position: absolute;
+    width: 50%;
+    height: fit-content;
+    left: 0%;
+    top: calc(25% + 250px);
+    transform: translate(-20px, -50%);
+    background: var(--sidebar-color);
+    border-left: solid 20px black;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.35);
+    color: var(--text-body-color);
+}
+
+.ita {
+    position: relative;
+}
+
+.ita-name {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    left: 0%;
+    transform: translate(-50%, -50%);
+    margin-left: 75px;
+    font-family: 'Saira Extra Condensed', sans-serif;
+    color: var(--text-body-color);
+    font-size: large;
+    font-weight: 900;
 }
 
-h1 {
-    margin-left: -35px;
+.msg {
+    color: var(--text-body-color);
+}
+
+.text {
+    margin-left: 30px;
+}
+
+.botn {
+    text-decoration: none;
 }

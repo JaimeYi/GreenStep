@@ -12,17 +12,46 @@
   <section class="home">
     <div class="text-top">
       <h1>¡Hola {{ user.username }}!</h1>
-      <h3>Que lindo verte por aqui</h3>
     </div>
-    <div class="body-page">
-      <div class="card">
-        <div class="card-body">
-          <h5>{{ message }}</h5>
-          <h6>El "." es para indicar decimales</h6>
+    <div class="card carbono">
+      <div class="card-body">
+        {% if carbono == '0' %}
+          <div class="msg mm">
+            Parece que aun no ingresas tu huella de carbono...
+          </div>
+        {% else %}
+        <div class="msg">
+          Tu huella de carbono es:
+        </div>
+        {% endif %}
+        <div class="card inc">
+          <div class="card-body">
+            <p class="msg ton">{{ message }}</p>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="card cart-ita">
+      <div class="card-body">
+        <div class="ita">
+          <img src="{% static 'img/Robotin.png' %}" alt="" height="100px">
+          <p class="ita-name">ITA</p>
+        </div>
+        {% if carbono == '0' %}
+          <div class="msg">Hola, me presento, mi nombre es Intelligent Technology Advice, o mejor conocida como ITA, mi rol aqui es acompañarte en tu camino de mejorar tu huella de carbono, estare presente en cada sección de esta web para guiarte. Para comenzar a recopilar tus datos, contesta la encuesta que hay preparada para ti, puedes llegar a ella ingresando a la sección 'Calculadora' que se encuentra en la barra lateral o puedes ingresar haciendo <a class="link" href="{% url 'calculadora' %}">click aqui</a></div>
+        {% else %}
+          <div class="msg">
+            Hola {{ user.username }}, sobre mi puedes encontrar tu ultimo registro de huella de carbono. Para ver de forma más detallada tus registros, puedes dirigirte a la sección 'Perfil'. <br><br>Recuerda, siempre debes intentar que este número vaya decendiendo, si necesitas consejos para disminuir este número dirigete a la sección 'Tu mundo', donde encontraras varios consejos que tal vez puedan ayudarte
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    <!--
+    <div class="body-page">
+          <h5>{{ message }}</h5>  
       <a href="{% url 'profile' %}" class="boton">Ver estadistica</a>
-    </div> 
+    </div>
+    -->
   </section>
 </body>
 

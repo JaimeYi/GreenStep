@@ -6,9 +6,64 @@
 
 <link rel="stylesheet" href="{% static 'css/prueba.css' %}">
 
+<style>
+    .container-flex {
+        width: 950px;
+        display: flex;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 950px;
+        background: var(--sidebar-color);
+    }
+    
+    .us{
+        border: 5px solid var(--container-color); 
+        padding: 15px; 
+        margin: 20px 0;
+        border-radius: 8px;
+        font-family: Times New Roman, serif; 
+        font-size: 103%;
+        color: var(--text-body-color);
+        position: relative;
+    }
+    
+    .imagen-grupo {
+        position: absolute;
+        width: 475px;
+        bottom: 0%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin: 20px;
+    }
+
+    .texto {
+        margin: 20px 0;
+    }
+</style>
+
 <body>
     <section class="home">
-        <h1 class="text">Nosotros</h1>
+        <div class="container-flex us"> 
+            <p class="texto">Somos el grupo 13 “Codeminds” conformado por Belen Camacho, Mateo Caprile, Jaime Guzmán y Sebastian Santander 
+                y este es nuestro proyecto para la clase de introducción a la ingeniería de la UTFSM. ¿De qué trata nuestro proyecto? 
+                ¿Qué queremos lograr?<br><br>
+                Para este proyecto decidimos hacer una calculadora de huella de carbono, pero pensamos: 
+                ¿Cómo hacemos único nuestro proyecto sabiendo que es un tema bien tocado por otros grupos de nuestra clase? 
+                Y llegamos a la idea que le dio el corazón al proyecto, el cual es la idea de no castigar ni regañar a las 
+                personas respecto a la falta de compromiso con el medio ambiente sino todo lo contrario; al ingresar a nuestra página web encontraras un lugar el cual te ayudara a hacer un seguimiento a tu huella de carbono, lo cual te ayudara a ser más consciente de tu huella en este mundo. <br><br>
+                Pero esto no fue un proceso fácil, todo lo contrario, tuvimos muchos cambios de planes y dificultades en el proceso, 
+                desde no saber usar django o github, hasta saber distribuir de mejor manera el rol de cada uno en el grupo pero tras 
+                mucho tiempo dedicado a aprender HTML, Django, github entre otras cosas… Y tras darnos cuenta de que algunas propuestas 
+                que teníamos al inicio serían imposibles por temas de tiempo y conocimientos, decidimos trabajar más a fondo las 
+                funciones más importantes en vez de agregar y agregar cosas. <br><br>
+                Al final este es el resultado, una calculadora de huella de carbono con resultados entregados que dependen de 
+                las respuestas en una encuesta breve, para esto utilizamos una base de datos que nos ayuden a proporcionar una 
+                mejor respuesta al usuario, dándole tips para bajar su huella de carbono. Y  así es como pudimos terminar con esta 
+                página y con ello,  lograr nuestro objetivo del inicio del proyecto a la vez que aprendíamos a trabajar en equipo y 
+                llevarnos la mejor experiencia al aprender a programar de mejor manera.</p>
+            <img class="imagen-grupo" src="{% static 'img/foto-grupo.jpeg' %}" alt="">
+        </div>
     </section>
 </body>
 

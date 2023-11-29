@@ -4,7 +4,10 @@
 
 {% block content %}
 
+{% load crispy_forms_tags %}
 
+
+<!--los datos seran: fecha de registro, cantidad de veces respondida la encuesta, promedio historico-->
 <link rel="stylesheet" type="text/css" href="{% static 'css/profile_styles.css' %}">
 
 <body>
@@ -13,33 +16,76 @@
         {% if respuestas == "0" %}
         <div class="container-flex glass">
           <i class='icono-lock bx bx-lock-alt'></i>
-          <p class="title">Funcionalidad no disponible</p>
-          <p class="subtitle">Para acceder a esta función calcula tu huella de carbono</p>
+          <p class="title">Sección no disponible</p>
+          <p class="subtitle">Para acceder a esta sección calcula tu huella de carbono</p>
           <div class="cont-boton">
             <a href="{% url 'calculadora' %}" class="boton">Calcula tu huella</a>
           </div>
         </div>
         {% endif %}
-        <div class="content">
-          <div class="media">
-            <img class="rounded-circle account-img" src="{% static 'img/default.jpg' %}"  width="100" height="100" >
-            <div class="media-body">
-              <h2 class="account-heading body-text">{{ user.username }}</h2>
-              <p class="text-secondary body-text">{{ user.email }}</p>
+        <div class="pos-carta">
+          <div class="carta">
+            <div class="imgBox">
+              <img src="{{ user.profile.image.url }}" alt="FotoDePerfil">
             </div>
-          </div>
-          <div>
-            <div class="card" style="width: 600px;">
-              <div class="card-body">
-                <canvas id="myChart" width="300" height="200"></canvas>
+            <div class="contenido">
+              <div class="details">
+                <h2>{{ user.username }}<br><span>{{ user.email }}</span></h2>
+                {% if messages %}
+                  {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+                <div class="data">
+                  <h3>{{ cr }}<br><span>Registros</span></h3>
+                  <h3>{{ prom }}<br><span>Promedio</span></h3>
+                </div>
+                <div class="actionBtn">
+                  <a class="boton1" href="{% url 'calculadora' %}">Enriquece tu gráfica</a>
+                  <button data-bs-toggle="modal" href="#editar" aria-expanded="false" aria-controls="exampleModal">Editar perfil</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="card">
+          <div class="card-body">
+            <canvas id="myChart" width="650" height="300"></canvas>
+            <hr>
+            <div class="ita">
+              <img src="{% static 'img/cara-robotin.png' %}" alt="" width="50px" height="50px" style="box-shadow: 0 1px var(--primary-color);">
+              <p class="ita-name">ITA</p>
+            </div>
+            <div class="msg">
+              Aquí están tus datos graficados, cada vez que realices un nuevo registro la gráfica se actualizará. Recuerda que si la barra baja, quiere decir que tu huella de carbono bajó, así que intenta siempre mantener estas barras lo más bajas posibles
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Editar perfil</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <fieldset class="form-group">
+                        {{ u_form|crispy }}
+                        {{ p_form|crispy }}
+                      </fieldset>
+                      <div class="from-group">
+                        <button class="btn btn-outline-info" type="submit">Update</button>
+                      </div>
+                    </form>
+                  </div>
+              </div>
+          </div>
       </div>
-
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      
       <script>
         const labels = JSON.parse('{{ labels|safe }}');
         const data = JSON.parse('{{ data|safe }}');

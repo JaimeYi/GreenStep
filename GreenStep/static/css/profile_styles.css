@@ -1,24 +1,29 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Saira+Extra+Condensed&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-    }
-.card {
-    width: 23%;
-    position: absolute;
+.home {
+    position: relative;
+    display: flex;
+    min-height: 100vh;
+}
+
+.pos-carta {
+    position: absolute; 
+    left: 25%;
     top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.card {
+    width: 600px;
+    height: 500px;
+    position: absolute;
     z-index: 0;
     background-color: var(--sidebar-color);
+    border-radius: 20px;
+    left: 75%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     }
-
-.body-text {
-    color: var(--text-body-color);
-}
 
 .container-flex {
     width: 100%;
@@ -29,7 +34,7 @@
 
 .glass {
     background: linear-gradient(135deg, rgba(255, 255, 255 , 0.1) rgba(255, 255, 255, 0));
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255 , 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
@@ -112,4 +117,157 @@
 .boton:hover::after {
     transition: all 0.6s ease-in-out;
     transform: scale(1, 1);
+}
+
+.carta {
+    position: relative;
+    width: 450px;
+    height: 540px;
+    background: var(--sidebar-color);
+    border-radius: 20px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+    transition: 0.5s;
+}
+
+.imgBox{
+    position: absolute;
+    left: 50%;
+    top: -50px;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 250px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.35);
+    transition: 0.5s;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.carta .contenido {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.carta .contenido .details {
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+    transition: 0.5s;
+}
+
+.carta .contenido .details h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-body-color);
+    font-weight: 400;
+}
+
+.carta .contenido .details h2 span {
+    color: var(--text-color);
+    font-size: medium;
+}
+
+.carta .contenido .details .data {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 20px 0;
+    width: 75%;
+}
+
+.carta .contenido .details .data h3 {
+    font-size: 1.5em;
+    color: var(--text-color);
+    line-height: 1.2em;
+    font-weight: 800;
+    margin: 20px;
+}
+
+.carta .contenido .details .data h3 span {
+    font-size: 0.85em;
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+.carta .contenido .details .actionBtn {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+}
+
+.carta .contenido .details .actionBtn button {
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 0.75em;
+    font-weight: 500;
+    background: var(--special-body);
+    color: var(--sidebar-color);
+}
+
+.carta .contenido .details .actionBtn .boton1 {
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 0.75em;
+    font-weight: 500;
+    background: var(--special-body);
+    color: var(--sidebar-color);
+    text-decoration: none;
+}
+
+.alert {
+    position: absolute;
+    left: 50%;
+    top: 62.5%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 10%;
+    font-size: 0.85em;
+}
+
+.ita {
+    position: relative;
+}
+
+.ita-name {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    margin-left: 75px;
+    font-family: 'Saira Extra Condensed', sans-serif;
+    color: var(--text-body-color);
+    font-size: large;
+    font-weight: 900;
+}
+
+.msg {
+    color: var(--text-body-color);
 }

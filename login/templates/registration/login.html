@@ -24,6 +24,13 @@
     <div class="container-flex">
         <h1 class="display-3">GreenStep</h1>
         <div class="card rounded-4 shadow-lg">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
             <div class="card-body">
                 {{ form|crispy }}
                 <div class="container2">
