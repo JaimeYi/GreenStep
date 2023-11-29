@@ -73,27 +73,20 @@
     color: var(--text-color);
 }
 
-.cont-boton {
-    position: absolute;
-    left: 50%;
-    top: 55%;
-    transform: translate(-50%, -50%);
-}
-
 .boton {
-    background: var(--text-color);
-    border: 2px solid var(--text-color);    
-    padding: 10px 15px;
-    border-radius: 25px;
-    font-weight: 500;
+    background: green; 
+    color: var(--sidebar-color); 
+    border: 2px solid var(--primary-color); 
+    padding: 16px 20px;
+    border-radius: 50px; 
+    position: absolute;
+    left: 3%;
+    top: 50%;
     overflow: hidden;
-    color: var(--sidebar-color);
-    text-decoration: none;
-    position: relative;
     display: inline-block;
-    z-index: 1;
+    text-decoration: none;
+    font-weight: 400;
 }
-
 .boton:hover {
     color: var(--text-color);
 }
